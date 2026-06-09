@@ -1,1 +1,28 @@
+#ESP32
+#include <OneWire.h>
+#include <DallasTemperature.h>
 
+#define TEMP_PIN 16
+#define VIB_PIN 17
+
+OneWire oneWire(TEMP_PIN);
+DallasTemperature tempSensor(&oneWire);
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(VIB_PIN, INPUT);
+  tempSensor.begin();
+}
+
+void loop() {
+  tempSensor.requestTemperatures();
+  float tempC = tempSensor.getTempCByIndex(0);
+  int vibration = digitalRead(VIB_PIN);
+
+  Serial.print("TEMP=");
+  Serial.print(tempC);
+  Serial.print(";VIB=");
+  Serial.println(vibration);
+
+  delay(1000);
+}

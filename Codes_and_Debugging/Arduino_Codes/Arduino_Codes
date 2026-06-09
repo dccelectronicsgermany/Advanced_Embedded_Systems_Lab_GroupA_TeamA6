@@ -1,1 +1,12 @@
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Arduino UNO WiFi ready");
+}
 
+void loop() {
+  if (Serial.available()) {
+    String data = Serial.readStringUntil('\n');
+    Serial.print("Received: ");
+    Serial.println(data);
+  }
+}

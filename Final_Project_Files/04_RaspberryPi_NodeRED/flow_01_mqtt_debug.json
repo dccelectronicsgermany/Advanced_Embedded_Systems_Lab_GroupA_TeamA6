@@ -1,0 +1,57 @@
+[
+  {
+    "id": "tab_flow01",
+    "type": "tab",
+    "label": "Flow 01 – MQTT Debug",
+    "disabled": false,
+    "info": "Step 1: Receive MQTT packets and print raw payload to debug console. Verifies the Pi is receiving data from the ESP32."
+  },
+  {
+    "id": "mqtt_in_01",
+    "type": "mqtt in",
+    "z": "tab_flow01",
+    "name": "MQTT In (sensors/node01)",
+    "topic": "sensors/node01",
+    "qos": "0",
+    "datatype": "utf8",
+    "broker": "mqtt_broker_01",
+    "x": 180,
+    "y": 160,
+    "wires": [["debug_raw_01"]]
+  },
+  {
+    "id": "debug_raw_01",
+    "type": "debug",
+    "z": "tab_flow01",
+    "name": "Raw Packet",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 430,
+    "y": 160,
+    "wires": []
+  },
+  {
+    "id": "mqtt_broker_01",
+    "type": "mqtt-broker",
+    "name": "Local Mosquitto",
+    "broker": "localhost",
+    "port": "1883",
+    "clientid": "nodered_flow01",
+    "usetls": false,
+    "compatmode": false,
+    "keepalive": "60",
+    "cleansession": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  }
+]
